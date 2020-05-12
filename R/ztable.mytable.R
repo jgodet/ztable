@@ -10,10 +10,16 @@
 #'res=mytable(sex~.,data=acs)
 #'z=ztable(res)
 #'z
-ztable.mytable=function(x,digits=NULL,...){
+ztable.mytable=function(x,digits=NULL,remove.pval,...){
 
     count=ncol(x$res)
-    if(x$show.all==FALSE) count=ncol(x$res)-7
+    if(x$show.all==FALSE){
+      if(remove.pval){
+        count=ncol(x$res)-8
+      }else{
+        count=ncol(x$res)-7
+      }
+    }
 
 #
 #       myalign="ll"
